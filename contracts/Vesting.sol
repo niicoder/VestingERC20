@@ -63,8 +63,8 @@ contract Vesting is Ownable {
             "Cannot withdraw more than available"
         );
 
-        available[receiver] -= amount;
-        total[receiver] -= amount;
+        available[receiver] = available[receiver].sub(amount);
+        total[receiver] = total[receiver].sub(amount);
         IERC20(CGB).transfer(receiver, amount);
         emit Withdrawn(receiver, amount);
     }
